@@ -37,6 +37,7 @@ if (isset($_GET['search']) && isset($_GET['search_criteria']) && isset($_GET['so
     $stmt = $conn->query('SELECT count(*) FROM book');
     $total_results = $stmt->fetchColumn();
     $total_pages = ceil($total_results / $perPage);
+    $search="";
 }
 
 // Current page
