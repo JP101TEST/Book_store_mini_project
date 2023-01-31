@@ -63,15 +63,15 @@ if (isset($_POST['insert'])) {
 
     if (empty($id_isbn)) {
         $_SESSION['error_ISBN'] = 'ISBN is empty';
-        header("location: ../admin/insert_book_page.php");
+        header("location: ../admin/insert_book_page.php?id_isbn=$id_isbn&id_typeB=$id_typeB&bookN=$bookN&id_publisher=$id_publisher&id_author=$id_author&price=$price&amount=$amount&image_file=$image_file");
     }
     if (empty($bookN)) {
         $_SESSION['error_bookN'] = 'BookName is empty';
-        header("location: ../admin/insert_book_page.php");
+        header("location: ../admin/insert_book_page.php?id_isbn=$id_isbn&id_typeB=$id_typeB&bookN=$bookN&id_publisher=$id_publisher&id_author=$id_author&price=$price&amount=$amount&image_file=$image_file");
     }
     if (empty($price)) {
         $_SESSION['error_price'] = 'Price is empty';
-        header("location: ../admin/insert_book_page.php");
+        header("location: ../admin/insert_book_page.php?id_isbn=$id_isbn&id_typeB=$id_typeB&bookN=$bookN&id_publisher=$id_publisher&id_author=$id_author&price=$price&amount=$amount&image_file=$image_file");
     }
     /*
     if (empty($amount)) {
@@ -80,7 +80,7 @@ if (isset($_POST['insert'])) {
     }*/
     if (isset($_SESSION['error_image'])) {
         # code...
-        header("location: ../admin/insert_book_page.php");
+        header("location: ../admin/insert_book_page.php?id_isbn=$id_isbn&id_typeB=$id_typeB&bookN=$bookN&id_publisher=$id_publisher&id_author=$id_author&price=$price&amount=$amount&image_file=$image_file");
     }
     echo "รหัส ISBN :" . $id_isbn . "<br>";
     echo "ประเภทหนังสือ :" . $id_typeB_T['typeN'] . "<br>";
@@ -104,7 +104,7 @@ if (isset($_POST['insert'])) {
             if ($row) {
                 # code...
                 $_SESSION['error_ISBN'] = "มี Id isbn นี้อยู่ในระบบแล้ว";
-                header("location: ../admin/insert_book_page.php");
+                header("location: ../admin/insert_book_page.php?id_isbn=$id_isbn&id_typeB=$id_typeB&bookN=$bookN&id_publisher=$id_publisher&id_author=$id_author&price=$price&amount=$amount&image_file=$image_file");
             } else {
                 # code...
                 echo "ไม่มี Id isbn นี้อยู่ในระบบ";
@@ -116,7 +116,7 @@ if (isset($_POST['insert'])) {
                 if ($row) {
                     # code...
                     $_SESSION['error_bookN'] = "มีชื่อหนังสือนี้อยู่ในระบบแล้ว";
-                    header("location: ../admin/insert_book_page.php");
+                    header("location: ../admin/insert_book_page.php?id_isbn=$id_isbn&id_typeB=$id_typeB&bookN=$bookN&id_publisher=$id_publisher&id_author=$id_author&price=$price&amount=$amount&image_file=$image_file");
                 } else {
                     echo "ยังไม่มีชื่อหนังสือนี้อยู่ในระบบ";
                     $stmt = $conn->prepare("INSERT INTO `book`(`id_isbn`, `id_typeB`, `bookN`, `imgeB`, `id_publisher`, `id_author`, `price`, `amount`) VALUES (:id_isbn,:id_typeB,:bookN,:imgeB,:id_publisher,:id_author,:price,:amount)");

@@ -14,6 +14,17 @@ $queryTB = "SELECT * FROM publisher_name ORDER BY id_publisher";
 $idPublishers = $conn->query($queryTB)->fetchAll();
 $queryTB = "SELECT * FROM author ORDER BY id_author";
 $authorSs = $conn->query($queryTB)->fetchAll();
+
+if (isset($_GET['id_isbn'])) {
+    $id_isbn = $_GET['id_isbn'];
+    $id_typeB = $_GET['id_typeB'];
+    $bookN = $_GET['bookN'];
+    $id_publisher = $_GET['id_publisher'];
+    $id_author = $_GET['id_author'];
+    $price = $_GET['price'];
+    $amount = $_GET['amount'];
+    $image_file = $_GET['image_file'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,30 +116,41 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                 <h1>เพิ่มหนังสือ</h1><br>
                 <form action="../operation/insert_user.php" method="post" class="form-group" enctype="multipart/form-data">
                     <div class="form-floating">
-                        <input type="text" name="id_isbn" class="form-control" pattern="[0-9]*" minlength="13" maxlength="13" title="ISBN should contain 13 characters including numbers"><br>
+                        <input type="text" name="id_isbn" class="form-control" pattern="[0-9]{13}" minlength="13" maxlength="13" title="ISBN should contain 13 characters including numbers" <?php if (isset($_GET['id_isbn'])) {
+                                                                                                                                                                                                    echo 'value="' . $id_isbn . '"';
+                                                                                                                                                                                                } ?>>
+                        <br>
                         <label for="id_isbn" style="font-family: Arial;font-size: 18px;">id isbn:</label>
                     </div>
                     <div class="form-floating">
                         <select name="id_typeB" class="form-select">
                             <?php foreach ($typeBooks as $key => $typeBook) : ?>
-                                <option value="<?php echo $typeBook['id_typeB']; ?>"><?php echo $typeBook['typeN']; ?>
+                                <option value="<?php echo $typeBook['id_typeB']; ?>" <?php if (isset($id_typeB) && $typeBook['id_typeB'] == $id_typeB) echo 'selected'; ?>>
+                                    <?php echo $typeBook['typeN']; ?>
                                 </option>
                             <?php endforeach; ?>
                         </select><br>
                         <label for="id_typeB" style="font-family: Arial;font-size: 18px;">id typeB:</label>
                     </div>
                     <div class="form-floating">
-                        <input type="text" name="bookN" class="form-control" pattern="[a-zA-Z0-9ก-๙ ]*"><br>
+                        <input type="text" name="bookN" class="form-control" pattern="[a-zA-Z0-9ก-๙-' ]*" <?php if (isset($_GET['bookN'])) {
+                                                                                                            echo 'value="' . $bookN . '"';
+                                                                                                        } ?>><br>
                         <label for="bookN" style="font-family: Arial;font-size: 18px;">book name:</label>
                     </div>
                     <div>
                         <label for="imgeB" style="font-family: Arial;font-size: 18px;">imge book:</label>
-                        <input type="file" name="imgeB" accept="image/png, image/jpeg" class="form-control" ><br>
+                        <?php if (isset($_GET['image_file'])) {
+                            echo '<a style="color:red;">* กรุณาใส่รูปใหม่ *</a>';
+                        } ?>
+                        <input type="file" name="imgeB" accept="image/png, image/jpeg" class="form-control"><br>
                     </div>
                     <div class="form-floating">
                         <select name="id_publisher" class="form-select">
                             <?php foreach ($idPublishers as $key => $idPublisher) : ?>
-                                <option value="<?php echo $idPublisher['id_publisher']; ?>">
+                                <option value="<?php echo $idPublisher['id_publisher']; ?>" <?php if (isset($id_publisher) && $idPublisher['id_publisher'] == $id_publisher) {
+                                                                                                echo 'selected';
+                                                                                            } ?>>
                                     <?php echo $idPublisher['publisherN']; ?>
                                 </option>
                             <?php endforeach; ?>
@@ -138,19 +160,27 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                     <div class="form-floating">
                         <select name="id_author" class="form-select">
                             <?php foreach ($authorSs as $key => $authorS) : ?>
-                                <option value="<?php echo $authorS['id_author']; ?>">
-                                    <?php echo $authorS['authorFN'] . " " . $authorS['authorLN']; ?></option>
+                                <option value="<?php echo $authorS['id_author']; ?>" <?php if (isset($id_author) && $authorS['id_author'] == $id_author) {
+                                                                                            echo 'selected';
+                                                                                        } ?>>
+                                    <?php echo $authorS['authorFN'] . " " . $authorS['authorLN']; ?>
+                                </option>
                             <?php endforeach; ?>
                         </select><br>
                         <label for="id_author" style="font-family: Arial;font-size: 18px;">id_author:</label>
                     </div>
                     <div class="form-floating">
-                        <input type="number" name="price" min="0" class="form-control"><br>
+
+                        <input type="text" name="price" id="price" min="0" class="form-control" <?php if (isset($_GET['price'])) {
+                                                                                                    echo 'value="' . $price . '"';
+                                                                                                } ?>><br>
                         <label for="price" style="font-family: Arial;font-size: 18px;">price:</label>
                     </div>
                     <div class="form-floating">
-                        <input type="number" name="amount" min="0" class="form-control"><br>
-                        <label for="amount " style="font-family: Arial;font-size: 18px;">amount:</label>
+                        <input type="number" name="amount" min="0" class="form-control" <?php if (isset($_GET['amount'])) {
+                                                                                            echo 'value="' . $amount . '"';
+                                                                                        } ?>><br>
+                        <label for="amount" style="font-family: Arial;font-size: 18px;">amount:</label>
                     </div>
                     <br>
                     <div class="d-flex justify-content-between">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2023 at 04:03 PM
+-- Generation Time: Jan 31, 2023 at 05:49 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -66,10 +66,32 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`id_isbn`, `id_typeB`, `bookN`, `imgeB`, `id_publisher`, `id_author`, `price`, `amount`) VALUES
+('1232327893216', '000', 'Sense and Sensibility      ', 'G_01.jpg', 'G001', 'D001', 81, 7),
+('1234567232116', '001', 'A Rose for Emily', 'anbprobuy.jpg', 'G002', 'C001', 99, 2),
+('1234567893216', '000', 'Brave New World', 'tlp_hero_book-cover-adb8a02f82394b605711f8632a44488b-1627474998.jpg', 'G002', 'A001', 5, 12),
 ('1237865432198', '001', 'Pride and Prejudice', 'the-great-gatsby.jpg', 'T001', 'A002', 23, 6),
+('3210987654321', '001', 'The Hobbit', 'C_03.jpg', 'G002', 'C001', 25, 4),
 ('3216549870321', '002', 'The Great Gatsby', 'tlp_hero_book-cover-adb8a02f82394b605711f8632a44488b-1627474998.jpg', 'P001', 'D001', 52, 12),
 ('4561237895213', '000', 'To Kill a Mockingbird', 'gardenwall.jpg', 'G002', 'A002', 45, 4),
-('9876543219876', '000', 'The Adventures of Tom Sawyer', 'book.jpg', 'P001', 'C001', 24, 3);
+('4567893210123', '002', 'To the Lighthouse', 'art.jpg', 'G002', 'C001', 69, 2),
+('4567893210987', '001', '1984', 'C_04.jpg', 'G001', 'D001', 15, 5),
+('6547193210987', '000', 'Heart of Darkness   ', 'Illustrationareeeefanart.jpg', 'E001', 'A001', 123, 21),
+('6547334210987', '000', 'The Count of Monte Cristo', 'G_02.jpg', 'G002', 'C002', 65, 2),
+('6547893210987', '002', 'Animal Farm', 'the-great-gatsby.jpg', 'E001', 'A002', 70, 2),
+('6547893231987', '002', 'The Return of Sherlock Holmes', 'anbpro.jpg', 'G001', 'A001', 121, 6),
+('6549873211234', '000', 'Harry Potter and the Philosophers Stone', 'G_04.jpg', 'P001', 'C002', 76, 3),
+('7896543210987', '002', 'Lord of the Rings', 'N_02.jpg', 'G001', 'A002', 12, 5),
+('7896543216542', '001', 'Wuthering Heights', 'anbprobuy.jpg', 'G001', 'C002', 51, 7),
+('8234567893236', '000', 'Moby Dick', 'Dowcon.png', 'E001', 'C001', 151, 2),
+('9234537893216', '001', 'The Invisible Man', 'C_04.jpg', 'T001', 'A001', 16, 5),
+('9723746259002', '000', 'Moby-Dick 2', 'Illustrationareeeefanart.jpg', 'G002', 'C002', 67, 1),
+('9789346259002', '000', 'The Yellow Wallpaper    ', 'G_03.jpg', 'E001', 'A001', 123, 5),
+('9789746259002', '000', 'ทั่วไป เล่ม1', 'anbpro.jpg', 'P001', 'A001', 23, 233),
+('9829543219876', '000', 'The Picture of Dorian Gray', 'book.jpg', 'E001', 'A002', 51, 4),
+('9876123239876', '000', 'Beloved', 'the-great-gatsby.jpg', 'G001', 'A002', 62, 2),
+('9876123789521', '000', 'One Hundred Years of Solitude', 'anbpro.jpg', 'T001', 'A002', 11, 6),
+('9876543219876', '000', 'The Adventures of Tom Sawyer', 'book.jpg', 'P001', 'C001', 24, 3),
+('9899543219876', '000', 'The Brothers Karamazov ', 'G_05.jpg', 'T001', 'A001', 51, 23);
 
 -- --------------------------------------------------------
 
