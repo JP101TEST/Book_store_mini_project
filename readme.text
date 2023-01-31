@@ -1,0 +1,62 @@
+เงื่อนไข
+    เช็คขนาดให้มากกว่าหรือเท่ากับ 6 และเช็คตัวอักษรพิเศษ
+วิธีที่ 1
+CREATE TABLE user_account(
+    Username VARCHAR(100) NOT NULL PRIMARY KEY CHECK
+        (
+            Username LIKE '[A-Za-z0-9_]'
+        ),
+        Userpassword VARCHAR(100) NOT NULL
+    CHECK
+        (
+            Userpassword LIKE '[A-Za-z0-9_]'
+        ),
+        first_name VARCHAR(255) NOT NULL,
+        last_name VARCHAR(255) NOT NULL,
+        house_number VARCHAR(255) NOT NULL,
+        road VARCHAR(255) ,
+        sub_district VARCHAR(255) ,
+        district VARCHAR(255) NOT NULL,
+        province VARCHAR(255) NOT NULL,
+        postal_code VARCHAR(5) NOT NULL,
+        email VARCHAR(255) NOT NULL
+) ENGINE = INNODB DEFAULT CHARSET = utf8;
+
+
+วิธีที่ 2
+CREATE TABLE user_account(
+    Username VARCHAR(100) NOT NULL PRIMARY KEY,
+    Userpassword VARCHAR(100) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    house_number VARCHAR(255) NOT NULL,
+    road VARCHAR(255) ,
+    sub_district VARCHAR(255),
+    district VARCHAR(255) NOT NULL,
+    province VARCHAR(255) NOT NULL,
+    postal_code VARCHAR(5) NOT NULL,
+    email VARCHAR(255) NOT NULL
+) ENGINE = INNODB DEFAULT CHARSET = utf8; 
+
+ALTER TABLE
+    user_account ADD UNIQUE(Username),
+CHECK
+    (
+        LEN(Username) >= 6 AND Username LIKE '[A-Za-z0-9_]'
+    ),
+CHECK
+    (
+        LEN(Userpassword) >= 6 AND Userpassword LIKE '[A-Za-z0-9_]'
+    );
+
+    admin
+Ad_1234
+chanakan
+kanpila
+53
+ในเมือง
+สุรินทร์
+32000
+book.job2012@gmail.com
+
+INSERT INTO `user_account`(`Username`, `Userpassword`, `first_name`, `last_name`, `house_number`, `road`, `sub_district`, `district`, `province`, `postal_code`, `email`) VALUES ('admin','Ad_1234','chanakan','kanpila','53',null,null,'ในเมือง','สุรินทร์','32000','book.job2012@gmail.com')

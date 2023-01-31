@@ -1,0 +1,119 @@
+body {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+article {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.C-header {
+    display: flex;
+    height: 150px;
+    align-items: center;
+    background-color: rgb(61, 93, 122);
+    padding-top: 5pt;
+    padding-bottom: 5pt;
+    margin-top: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 30px;
+}
+
+.C-header div {
+    padding-left: 10pt;
+    padding-right: 10pt;
+}
+
+.C-header-logo {
+    margin-left: 50px;
+}
+
+.C-header-logo img {
+    filter: invert(100%) sepia(0%) saturate(7462%) hue-rotate(100deg) brightness(116%) contrast(106%);
+}
+
+.C-header-loging {
+    margin-right: 50px;
+}
+
+.C-red-color {
+    background-color: rgb(236, 116, 112);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    font-family: Arial;
+}
+
+
+
+.pagination ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination-link {
+    padding: 8px 12px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination-link:hover,
+.pagination-link.active {
+    background-color: rgb(61, 93, 122);
+    color: #fff;
+}
+
+.form-search {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-search .form-control {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 4px;
+    width: 180px; /* adjust as needed */
+    margin-right: 10px; /* adjust as needed */
+}
+
+.form-control-form-c {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 4px;
+    width: 250px; /* adjust as needed */
+    margin-right: 10px; /* adjust as needed */
+}
+
+
+.form-search .btn-primary {
+    background-color: rgb(61, 93, 122);
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-color: #ddd;
+}
+
+.form-search .btn-primary:hover {
+    background-color: white;
+    color: rgb(61, 93, 122);
+    border-color: white;
+}

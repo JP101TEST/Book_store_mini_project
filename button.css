@@ -1,0 +1,191 @@
+.login-button {
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background-color: rgb(61, 93, 122);
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    color: rgb(61, 93, 122);
+    background-color: #ffffff;
+    animation: mymove 3s infinite;
+}
+
+.nav-ul , .nav-ul-admin {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 50px;
+    padding: 5px;
+}
+
+
+.nav-ul a {
+    display: flex;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background-color: rgb(61, 93, 122);
+    height: 80%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    font-family: arial;
+    width: 300px;
+}
+
+.nav-ul-admin a {
+    display: flex;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background-color: rgb(236, 116, 112);
+    height: 80%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    font-family: arial;
+    width: 300px;
+}
+
+.nav-ul a:hover {
+    display: flex;
+    color: rgb(61, 93, 122);
+    border: 2px solid rgb(61, 93, 122);
+    background-color: #ffffff;
+    animation: mymove 3s infinite;
+    cursor: pointer;
+}
+
+.nav-ul-admin a:hover {
+    display: flex;
+    color: rgb(236, 116, 112);
+    border: 2px solid rgb(236, 116, 112);
+    background-color: #ffffff;
+    animation: mymove2 3s infinite;
+    cursor: pointer;
+}
+
+@keyframes mymove {
+    0% {
+        background-color: #ffffff;
+        color: rgb(61, 93, 122);
+    }
+
+    50% {
+        background-color: rgb(121, 155, 187);
+        color: #ffffff;
+    }
+
+    100% {
+        background-color: #ffffff;
+        color: rgb(61, 93, 122);
+    }
+}
+
+.login-button-admin {
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background-color: rgb(236, 116, 112);
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+}
+
+.login-button-admin:hover {
+    color: rgb(236, 116, 112);
+    background-color: #ffffff;
+    animation: mymove2 3s infinite;
+}
+
+@keyframes mymove2 {
+    0% {
+        background-color: rgb(236, 116, 112);
+        color: #ffffff;
+    }
+
+    50% {
+        background-color: #ffffff;
+        color: rgb(236, 116, 112);
+        
+    }
+
+    100% {
+        background-color: rgb(236, 116, 112);
+        color: #ffffff;
+    }
+}
+.error{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   font-family: Arial;
+}
+
+ .error div{
+    color: rgb(255, 255, 255);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+    text-align: center;
+    animation: mymoveError 1.5s infinite;
+    margin-bottom: 5px;
+ }
+
+ @keyframes mymoveError {
+    0% {
+        background-color: rgb(255, 153, 150);
+    }
+
+    50% {
+        background-color: #ff0000;
+    }
+
+    100% {
+        background-color: rgb(255, 153, 150);
+    }
+}
+ 
+.addIcon{
+    margin-left: 2%;
+    display: flex;
+    background-color: rgb(255, 193, 190);
+    color: rgb(255, 255, 255);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 90px;
+    /*height: 50px;*/
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.addIcon:hover{
+    background-color: rgb(255, 153, 150);
+    border-color: white;
+}
+
+.addIcon a:link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+ }
+.addIcon a:visited {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+ }
+.addIcon a:active {
+    color: rgb(255, 255, 255);
+ }
