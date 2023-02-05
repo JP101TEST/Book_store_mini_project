@@ -125,7 +125,8 @@ if (isset($_GET['id_isbn'])) {
                     <div class="form-floating">
                         <select name="id_typeB" class="form-select">
                             <?php foreach ($typeBooks as $key => $typeBook) : ?>
-                                <option value="<?php echo $typeBook['id_typeB']; ?>" <?php if (isset($id_typeB) && $typeBook['id_typeB'] == $id_typeB) echo 'selected'; ?>>
+                                <option value="<?php echo $typeBook['id_typeB']; ?>" 
+                                <?php if (isset($id_typeB) && $typeBook['id_typeB'] == $id_typeB) echo 'selected'; ?>>
                                     <?php echo $typeBook['typeN']; ?>
                                 </option>
                             <?php endforeach; ?>

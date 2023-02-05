@@ -44,6 +44,10 @@ article {
     background-color: rgb(236, 116, 112);
 }
 
+.C-yellow-color{
+    background-color: rgb(236, 228, 112);
+}
+
 .pagination {
     display: flex;
     justify-content: center;
