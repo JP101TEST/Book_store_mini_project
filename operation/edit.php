@@ -32,6 +32,14 @@ if (isset($_POST['edit'])) {
     $amount = $_POST['amount'];
 
     /*4*/
+
+    if ($_POST['price'] == "") {
+        //header("location: ../admin/edit_book.php?id=$id_isbn");
+        $price = $_GET['Oprice'];
+    }
+    if ($_POST['amount'] == ""){
+        $amount = $_GET['Oamount'];
+    }
     try {
         $image_file = $_FILES['imgeB']['name'];
         $type = $_FILES['imgeB']['type'];
@@ -70,7 +78,7 @@ if (isset($_POST['edit'])) {
         # code...
         header("location: ../admin/edit_book.php?id=$id_isbn");
     }
-    
+
 
 
     //เช็คค่าซ้ำ

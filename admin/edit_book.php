@@ -79,9 +79,11 @@ $authorSs = $conn->query($queryTB)->fetchAll();
             <ul>
                 <form>
                     <!-- hello admin-->
+                    <!--
                     <a href="ad_index.php" style="text-decoration: none;">
                         <p class="login-button-admin">cancel</p>
                     </a>
+                    -->
                 </form>
             </ul>
         </div>
@@ -133,7 +135,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                 <form action="../operation/edit.php?idISBN=<?php echo $id_isbn; ?>&OImage=<?php echo $imgeB; ?>&OName=<?php echo $bookN; ?>&Oprice=<?php echo $price; ?>&Oamount=<?php echo $amount; ?>" method="post" class="form-group" enctype="multipart/form-data">
                     <div class="form-floating">
                         <input type="text" name="id_isbn" class="form-control" pattern="[0-9]*" minlength="13" maxlength="13" title="ISBN should contain 13 characters including numbers" value="<?php echo $id_isbn; ?>" disabled><br>
-                        <label for="id_isbn" style="font-family: Arial;font-size: 18px;">id isbn:</label>
+                        <label for="id_isbn" style="font-family: Arial;font-size: 18px;">Id isbn:</label>
                     </div>
                     <div class="form-floating">
                         <select name="id_typeB" class="form-select">
@@ -143,7 +145,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                                 </option>
                             <?php endforeach; ?>
                         </select><br>
-                        <label for="id_typeB" style="font-family: Arial;font-size: 18px;">id typeB:</label>
+                        <label for="id_typeB" style="font-family: Arial;font-size: 18px;">New type book:</label>
                     </div>
 
                     <div class="form-floating">
@@ -151,7 +153,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                         <label for="bookN" style="font-family: Arial;font-size: 18px;">New book name:</label>
                     </div>
                     <div>
-                        <label for="imgeB" style="font-family: Arial;font-size: 18px;"> New imge book:</label>
+                        <label for="imgeB" style="font-family: Arial;font-size: 18px;"> New image book:</label>
                         <input type="file" name="imgeB" accept="image/png, image/jpeg" class="form-control"><br>
                     </div>
                     <div class="form-floating">

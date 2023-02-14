@@ -97,10 +97,10 @@ $users = $conn->query($query)->fetchAll();
     <!-- <article> -->
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" class="form-search">
         <select name="sort_order" class="form-control">
-            <option value="asc">น้อย->มาก </option>
-            <option value="desc">มาก->น้อย </option>
+            <option value="asc" <?php if ($_GET['sort_order'] == "asc") echo 'selected'; ?> >น้อย->มาก </option>
+            <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?> >มาก->น้อย </option>
         </select>
-        <input type="text" name="search" class="form-control-form-c" placeholder="ชื่อหนังสือ">
+        <input type="text" name="search" class="form-control-form-c" placeholder="ชื่อหนังสือ" <?php if ($_GET['search'] != "") echo 'value='.$_GET['search']; ?> >
         <input type="submit" class="btn btn-primary" value="Search">
     </form>
     <br>

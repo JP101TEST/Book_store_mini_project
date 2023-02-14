@@ -26,8 +26,6 @@ if (isset($_GET['search']) && isset($_GET['search_criteria']) && isset($_GET['so
         $stmt = $conn->query("SELECT count(*) FROM book AS b INNER JOIN publisher_name AS pn ON b.id_publisher = pn.id_publisher INNER JOIN author AS au ON b.id_author = au.id_author WHERE b.price LIKE '%$search%' ");
     } elseif ($search_criteria == "amount") {
         $stmt = $conn->query("SELECT count(*) FROM book AS b INNER JOIN publisher_name AS pn ON b.id_publisher = pn.id_publisher INNER JOIN author AS au ON b.id_author = au.id_author WHERE b.amount LIKE '%$search%' ");
-    } else {
-        $stmt = $conn->query("SELECT count(*) FROM book AS b INNER JOIN publisher_name AS pn ON b.id_publisher = pn.id_publisher INNER JOIN author AS au ON b.id_author = au.id_author WHERE b.bookN LIKE '%$search%' OR pn.publisherN LIKE '%$search%' OR CONCAT(au.authorFN,' ',au.authorLN) LIKE '%$search%' ");
     }
 
     $total_results = $stmt->fetchColumn();
@@ -37,7 +35,7 @@ if (isset($_GET['search']) && isset($_GET['search_criteria']) && isset($_GET['so
     $stmt = $conn->query('SELECT count(*) FROM book');
     $total_results = $stmt->fetchColumn();
     $total_pages = ceil($total_results / $perPage);
-    $search="";
+    $search = "";
 }
 
 // Current page
@@ -61,8 +59,6 @@ if (isset($_GET['search']) && isset($_GET['search_criteria']) && isset($_GET['so
         $query = "SELECT  b.id_isbn as idISBN, b.bookN as bookName, b.imgeB as imgeBook, tb.typeN as bookType, pn.publisherN as publisherName, CONCAT(au.authorFN,' ',au.authorLN) as authorName, b.price, b.amount FROM book AS b INNER JOIN type_book AS tb ON b.id_typeB = tb.id_typeB INNER JOIN publisher_name AS pn ON b.id_publisher = pn.id_publisher INNER JOIN author AS au ON b.id_author = au.id_author WHERE  b.price LIKE '%$search%' ORDER BY b.price $sort_order , b.bookN $sort_order  LIMIT $starting_limit,$perPage";
     } elseif ($search_criteria == "amount") {
         $query = "SELECT  b.id_isbn as idISBN, b.bookN as bookName, b.imgeB as imgeBook, tb.typeN as bookType, pn.publisherN as publisherName, CONCAT(au.authorFN,' ',au.authorLN) as authorName, b.price, b.amount FROM book AS b INNER JOIN type_book AS tb ON b.id_typeB = tb.id_typeB INNER JOIN publisher_name AS pn ON b.id_publisher = pn.id_publisher INNER JOIN author AS au ON b.id_author = au.id_author WHERE  b.amount LIKE '%$search%' ORDER BY b.amount $sort_order , b.bookN $sort_order  LIMIT $starting_limit,$perPage";
-    } else {
-        $query = "SELECT b.id_isbn as idISBN, b.bookN as bookName, b.imgeB as imgeBook, tb.typeN as bookType, pn.publisherN as publisherName, CONCAT(au.authorFN,' ',au.authorLN) as authorName, b.price, b.amount FROM book AS b INNER JOIN type_book AS tb ON b.id_typeB = tb.id_typeB INNER JOIN publisher_name AS pn ON b.id_publisher = pn.id_publisher INNER JOIN author AS au ON b.id_author = au.id_author WHERE b.bookN LIKE '%$search%' OR pn.publisherN LIKE '%$search%' OR CONCAT(au.authorFN,' ',au.authorLN) LIKE '%$search%' ORDER BY pn.publisherN $sort_order,au.authorFN $sort_order,b.bookN $sort_order LIMIT $starting_limit,$perPage";
     }
 } else {
     $query = "SELECT b.id_isbn as idISBN, b.bookN as bookName, b.imgeB as imgeBook, tb.typeN as bookType, pn.publisherN as publisherName, CONCAT(au.authorFN,' ',au.authorLN) as authorName, b.price, b.amount FROM book AS b INNER JOIN type_book AS tb ON b.id_typeB = tb.id_typeB INNER JOIN publisher_name AS pn ON b.id_publisher = pn.id_publisher INNER JOIN author AS au ON b.id_author = au.id_author ORDER BY b.bookN desc LIMIT $starting_limit,$perPage";
@@ -141,19 +137,18 @@ $users = $conn->query($query)->fetchAll();
         <hr>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" class="form-search">
             <select name="search_criteria" class="form-control">
-                <option value="id_isbn">ID ISBN</option>
-                <option value="bookN">ชื่อหนังสือ</option>
-                <option value="publisherN">ผู้จัดจำหน่าย</option>
-                <option value="authorName">ผู้เขียน</option>
-                <option value="price">ราคา</option>
-                <option value="amount">จำนวน</option>
-                <option value="all">ทั้งหมด</option>
+                <option value="id_isbn" <?php if ($_GET['search_criteria'] == "id_isbn") echo 'selected'; ?> >ID ISBN</option>
+                <option value="bookN" <?php if ($_GET['search_criteria'] == "bookN") echo 'selected'; ?> >ชื่อหนังสือ</option>
+                <option value="publisherN" <?php if ($_GET['search_criteria'] == "publisherN") echo 'selected'; ?> >ผู้จัดจำหน่าย</option>
+                <option value="authorName" <?php if ($_GET['search_criteria'] == "authorName") echo 'selected'; ?> >ผู้เขียน</option>
+                <option value="price" <?php if ($_GET['search_criteria'] == "price") echo 'selected'; ?> >ราคา</option>
+                <option value="amount" <?php if ($_GET['search_criteria'] == "amount") echo 'selected'; ?> >จำนวน</option>
             </select>
             <select name="sort_order" class="form-control">
-                <option value="asc">น้อย->มาก </option>
-                <option value="desc">มาก->น้อย </option>
+                <option value="asc" <?php if ($_GET['sort_order'] == "asc") echo 'selected'; ?>>น้อย->มาก </option>
+                <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?>>มาก->น้อย </option>
             </select>
-            <input type="text" name="search" class="form-control-form-c" placeholder="Search">
+            <input type="text" name="search" class="form-control-form-c" placeholder="Search" <?php if ($_GET['search'] != "") echo 'value='.$_GET['search']; ?> >
             <input type="submit" class="btn btn-primary" value="Search">
         </form>
     </article>

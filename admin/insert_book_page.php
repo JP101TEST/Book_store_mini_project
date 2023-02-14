@@ -57,9 +57,11 @@ if (isset($_GET['id_isbn'])) {
             <ul>
                 <form>
                     <!-- hello admin-->
+                    <!--
                     <a href="ad_index.php" style="text-decoration: none;">
                         <p class="login-button-admin">cancel</p>
                     </a>
+                    -->
                 </form>
             </ul>
         </div>
@@ -120,27 +122,26 @@ if (isset($_GET['id_isbn'])) {
                                                                                                                                                                                                     echo 'value="' . $id_isbn . '"';
                                                                                                                                                                                                 } ?>>
                         <br>
-                        <label for="id_isbn" style="font-family: Arial;font-size: 18px;">id isbn:</label>
+                        <label for="id_isbn" style="font-family: Arial;font-size: 18px;">Id isbn:</label>
                     </div>
                     <div class="form-floating">
                         <select name="id_typeB" class="form-select">
                             <?php foreach ($typeBooks as $key => $typeBook) : ?>
-                                <option value="<?php echo $typeBook['id_typeB']; ?>" 
-                                <?php if (isset($id_typeB) && $typeBook['id_typeB'] == $id_typeB) echo 'selected'; ?>>
+                                <option value="<?php echo $typeBook['id_typeB']; ?>" <?php if (isset($id_typeB) && $typeBook['id_typeB'] == $id_typeB) echo 'selected'; ?>>
                                     <?php echo $typeBook['typeN']; ?>
                                 </option>
                             <?php endforeach; ?>
                         </select><br>
-                        <label for="id_typeB" style="font-family: Arial;font-size: 18px;">id typeB:</label>
+                        <label for="id_typeB" style="font-family: Arial;font-size: 18px;">Type book:</label>
                     </div>
                     <div class="form-floating">
                         <input type="text" name="bookN" class="form-control" pattern="[a-zA-Z0-9ก-๙-' ]*" <?php if (isset($_GET['bookN'])) {
-                                                                                                            echo 'value="' . $bookN . '"';
-                                                                                                        } ?>><br>
-                        <label for="bookN" style="font-family: Arial;font-size: 18px;">book name:</label>
+                                                                                                                echo 'value="' . $bookN . '"';
+                                                                                                            } ?>><br>
+                        <label for="bookN" style="font-family: Arial;font-size: 18px;">Book name:</label>
                     </div>
                     <div>
-                        <label for="imgeB" style="font-family: Arial;font-size: 18px;">imge book:</label>
+                        <label for="imgeB" style="font-family: Arial;font-size: 18px;">Image book:</label>
                         <?php if (isset($_GET['image_file'])) {
                             echo '<a style="color:red;">* กรุณาใส่รูปใหม่ *</a>';
                         } ?>
@@ -156,7 +157,7 @@ if (isset($_GET['id_isbn'])) {
                                 </option>
                             <?php endforeach; ?>
                         </select><br>
-                        <label for="id_publisher" style="font-family: Arial;font-size: 18px;">id_publisher:</label>
+                        <label for="id_publisher" style="font-family: Arial;font-size: 18px;">Publisher:</label>
                     </div>
                     <div class="form-floating">
                         <select name="id_author" class="form-select">
@@ -168,20 +169,19 @@ if (isset($_GET['id_isbn'])) {
                                 </option>
                             <?php endforeach; ?>
                         </select><br>
-                        <label for="id_author" style="font-family: Arial;font-size: 18px;">id_author:</label>
+                        <label for="id_author" style="font-family: Arial;font-size: 18px;">Author:</label>
                     </div>
                     <div class="form-floating">
-
-                        <input type="text" name="price" id="price" min="0" class="form-control" <?php if (isset($_GET['price'])) {
-                                                                                                    echo 'value="' . $price . '"';
-                                                                                                } ?>><br>
-                        <label for="price" style="font-family: Arial;font-size: 18px;">price:</label>
+                        <input type="number" name="price" id="priceI" min="0" class="form-control" <?php if (isset($_GET['price'])) {
+                                                                                                        echo 'value="' . $price . '"';
+                                                                                                    } ?>><br>
+                        <label for="priceI" style="font-family: Arial;font-size: 18px;">Price:</label>
                     </div>
                     <div class="form-floating">
-                        <input type="number" name="amount" min="0" class="form-control" <?php if (isset($_GET['amount'])) {
-                                                                                            echo 'value="' . $amount . '"';
-                                                                                        } ?>><br>
-                        <label for="amount" style="font-family: Arial;font-size: 18px;">amount:</label>
+                        <input type="number" name="amount" id="amountI" min="0" class="form-control" <?php if (isset($_GET['amount'])) {
+                                                                                                            echo 'value="' . $amount . '"';
+                                                                                                        } ?>><br>
+                        <label for="amountI" style="font-family: Arial;font-size: 18px;">Amount:</label>
                     </div>
                     <br>
                     <div class="d-flex justify-content-between">

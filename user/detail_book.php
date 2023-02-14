@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once 'server.php';
+require_once '../server.php';
 
 if (isset($_POST['back'])) {
-    header('location: home_index.php');
+    header('location: user_index.php');
 }
 
 // Get the ISBN from the URL
@@ -53,8 +53,8 @@ $authorSs = $conn->query($queryTB)->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $_SESSION['urole_admin']; ?></title>
     <!-- css -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="button.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../button.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
@@ -62,7 +62,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
     <!-- <header> -->
     <div class="C-header C-yellow-color">
         <div class="C-header-logo">
-            <img src="image/book_logo.png" alt="book_logo_color.png" height="75px" style="text-align: center;">
+            <img src="../image/book_logo.png" alt="book_logo_color.png" height="75px" style="text-align: center;">
         </div>
         <div style="flex-grow: 1;text-align: left;font-family: arial;color: white;font-size: 50px;">
             <strong>|BOOK details</strong>
@@ -86,7 +86,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
             <div class="w-50">
                 <h1>หนังสือ</h1><br>
                 <div class="text-center">
-                    <?php echo '<img src="image/upload/' . $imgeB . '" alt="" height="300px" width="230px" ><br><br>'; ?>
+                    <?php echo '<img src="../image/upload/' . $imgeB . '" alt="" height="300px" width="230px" ><br><br>'; ?>
                 </div>
                 <form action="" method="post">
                     <div class="form-floating">
