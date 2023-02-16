@@ -3,7 +3,11 @@ session_start();
 require_once 'server.php';
 
 if (isset($_POST['back'])) {
-    header('location: home_index.php');
+    if (isset($_GET['user'])) {
+        header('location: user/user_index.php');
+    }else {
+        header('location: home_index.php');
+    }
 }
 
 // Get the ISBN from the URL
