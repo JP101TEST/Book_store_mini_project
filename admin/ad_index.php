@@ -99,7 +99,7 @@ $users = $conn->query($query)->fetchAll();
             <ul>
                 <form action="../operation/logout.php" method="post">
                     <!-- hello admin-->
-                    <input name="logout" type="submit" value="logout" class="login-button-admin">
+                    <input name="logout" type="submit" value="ออกจากระบบ" class="login-button-admin">
                 </form>
             </ul>
         </div>
@@ -149,7 +149,7 @@ $users = $conn->query($query)->fetchAll();
                 <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?>>มาก->น้อย </option>
             </select>
             <input type="text" name="search" class="form-control-form-c" placeholder="Search" <?php if ($_GET['search'] != "") echo 'value='.$_GET['search']; ?> >
-            <input type="submit" class="btn btn-primary" value="Search">
+            <input type="submit" class="btn btn-primary" value="ค้นหา">
         </form>
     </article>
     <br>
@@ -228,7 +228,7 @@ $users = $conn->query($query)->fetchAll();
             <div class="pagination">
                 <ul>
                     <?php if (count($users) > 0) : ?>
-                        <li><a href='?page=1&search=<?php echo $search; ?>&search_criteria=<?php echo $search_criteria; ?>&sort_order=<?php echo $sort_order; ?>' class="pagination-link">First</a></li>
+                        <li><a href='?page=1&search=<?php echo $search; ?>&search_criteria=<?php echo $search_criteria; ?>&sort_order=<?php echo $sort_order; ?>' class="pagination-link">หน้าแรก</a></li>
                     <?php endif; ?>
                     <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
                         <li>
@@ -238,7 +238,7 @@ $users = $conn->query($query)->fetchAll();
                         </li>
                     <?php endfor; ?>
                     <?php if (count($users) > 0) : ?>
-                        <li><a href='?page=<?php echo $total_pages; ?>&search=<?php echo $search; ?>&search_criteria=<?php echo $search_criteria; ?>&sort_order=<?php echo $sort_order; ?>' class="pagination-link">Last</a></li>
+                        <li><a href='?page=<?php echo $total_pages; ?>&search=<?php echo $search; ?>&search_criteria=<?php echo $search_criteria; ?>&sort_order=<?php echo $sort_order; ?>' class="pagination-link">หน้าสุดท้าย</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
@@ -246,7 +246,7 @@ $users = $conn->query($query)->fetchAll();
             <div class="pagination">
                 <ul>
                     <?php if (count($users) > 0) : ?>
-                        <li><a href='?page=1' class="pagination-link">First</a></li>
+                        <li><a href='?page=1' class="pagination-link">หน้าแรก</a></li>
                     <?php endif; ?>
                     <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
                         <li>
@@ -256,7 +256,7 @@ $users = $conn->query($query)->fetchAll();
                         </li>
                     <?php endfor; ?>
                     <?php if (count($users) > 0) : ?>
-                        <li><a href='?page=<?php echo $total_pages; ?>' class="pagination-link">Last</a></li>
+                        <li><a href='?page=<?php echo $total_pages; ?>' class="pagination-link">หน้าสุดท้าย</a></li>
                     <?php endif; ?>
                 </ul>
             </div>

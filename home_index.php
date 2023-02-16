@@ -65,7 +65,7 @@ $users = $conn->query($query)->fetchAll();
                 <form action="operation/signin.php" method="post">
                     <input type="text" name="username" placeholder="Username">
                     <input type="password" name="password" placeholder="Password">
-                    <input type="submit" name="signin" value="login" class="login-button">
+                    <input type="submit" name="signin" value="เข้าสู่ระบบ" class="login-button">
                 </form>
             </ul>
         </div>
@@ -101,7 +101,7 @@ $users = $conn->query($query)->fetchAll();
             <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?> >มาก->น้อย </option>
         </select>
         <input type="text" name="search" class="form-control-form-c" placeholder="ชื่อหนังสือ" <?php if ($_GET['search'] != "") echo 'value='.$_GET['search']; ?> >
-        <input type="submit" class="btn btn-primary" value="Search">
+        <input type="submit" class="btn btn-primary" value="ค้นหา">
     </form>
     <br>
     <?php if (empty($search)) {
@@ -119,28 +119,6 @@ $users = $conn->query($query)->fetchAll();
     <?php } ?>
 
     <hr>
-    <!--
-    <table class="table text-center">
-        <?php /*if (count($users) > 0) : ?>
-            <tr>
-                <th>ชื่อหนังสือ</th>
-                <th>รูป</th>
-            </tr>
-        <?php endif; ?>
-        <?php if (count($users) > 0) : ?>
-            <?php foreach ($users as $key => $user) : ?>
-                <tr>
-                    <td class="align-middle"><a href="www.youtube.com"><?php echo $user['bookName']; ?></a></td>
-                    <td class="align-middle"><img src="image/upload/<?php echo $user['imgeBook']; ?>" alt="" height="200px" width="130px"></td>
-                </tr>
-            <?php endforeach; ?>
-        <?php else : ?>
-            <tr>
-                <td colspan="3"><br>No results found for "<?php echo $search; ?>"</td>
-            </tr>
-        <?php endif; */ ?>
-    </table>
-        -->
     <div class="d-flex flex-wrap justify-content-sm-center">
         <?php if (count($users) > 0) : ?>
             <?php foreach ($users as $key => $user) : ?>
@@ -167,7 +145,7 @@ $users = $conn->query($query)->fetchAll();
             <div class="pagination">
                 <ul>
                     <?php if (count($users) > 0) : ?>
-                        <li><a href='?page=1&search=<?php echo $search; ?>&sort_order=<?php echo $sort_order; ?>' class="pagination-link">First</a></li>
+                        <li><a href='?page=1&search=<?php echo $search; ?>&sort_order=<?php echo $sort_order; ?>' class="pagination-link">หน้าแรก</a></li>
                     <?php endif; ?>
                     <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
                         <li>
@@ -177,7 +155,7 @@ $users = $conn->query($query)->fetchAll();
                         </li>
                     <?php endfor; ?>
                     <?php if (count($users) > 0) : ?>
-                        <li><a href='?page=<?php echo $total_pages; ?>&search=<?php echo $search; ?>&sort_order=<?php echo $sort_order; ?>' class="pagination-link">Last</a></li>
+                        <li><a href='?page=<?php echo $total_pages; ?>&search=<?php echo $search; ?>&sort_order=<?php echo $sort_order; ?>' class="pagination-link">หน้าสุดท้าย</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
@@ -185,7 +163,7 @@ $users = $conn->query($query)->fetchAll();
             <div class="pagination">
                 <ul>
                     <?php if (count($users) > 0) : ?>
-                        <li><a href='?page=1' class="pagination-link">First</a></li>
+                        <li><a href='?page=1' class="pagination-link">หน้าแรก</a></li>
                     <?php endif; ?>
                     <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
                         <li>
@@ -195,7 +173,7 @@ $users = $conn->query($query)->fetchAll();
                         </li>
                     <?php endfor; ?>
                     <?php if (count($users) > 0) : ?>
-                        <li><a href='?page=<?php echo $total_pages; ?>' class="pagination-link">Last</a></li>
+                        <li><a href='?page=<?php echo $total_pages; ?>' class="pagination-link">หน้าสุดท้าย</a></li>
                     <?php endif; ?>
                 </ul>
             </div>

@@ -105,7 +105,8 @@ if (isset($_POST['edit'])) {
             $stmt->bindParam(":id_author", $id_author);
             $stmt->bindParam(":price", $price);
             $stmt->bindParam(":amount", $amount);
-            $stmt->execute();*/
+            $stmt->execute();
+            */
             $stmt = $conn->prepare("UPDATE `book` SET `id_typeB` = :id_typeB, `bookN` = :bookN, `imgeB` = :imgeB, `id_publisher` = :id_publisher, `id_author` = :id_author, `price` = :price, `amount` = :amount WHERE `id_isbn` = :id_isbn");
             $stmt->bindParam(":id_isbn", $id_isbn);
             $stmt->bindParam(":id_typeB", $id_typeB);
