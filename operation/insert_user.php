@@ -93,8 +93,6 @@ if (isset($_POST['insert'])) {
 
     //เช็คค่าซ้ำ
     if (!empty($id_isbn) && !empty($bookN) && !empty($price) && !isset($_SESSION['error_image'])) {
-        # code...
-
         try {
             $checkId_isbn = $conn->prepare("SELECT id_isbn FROM book WHERE id_isbn = :id_isbn"); //$userName
             $checkId_isbn->bindParam(":id_isbn", $id_isbn);
@@ -136,7 +134,9 @@ if (isset($_POST['insert'])) {
         }
     }
     echo "<br>";
-    echo '<a href="../admin/ad_index.php" style="text-decoration: none;">
+
+    /*echo '<a href="../admin/ad_index.php" style="text-decoration: none;">
     <p class="login-button-admin">cancel</p>
-</a>';
+</a>';*/
+    header("location: ../admin/ad_index.php");
 }
