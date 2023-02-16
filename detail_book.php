@@ -10,6 +10,7 @@ if (isset($_POST['back'])) {
 $isbn = $_GET['idISBN'];
 
 // Retrieve the book details from the database using the ISBN
+//เลือกหนังสือจากตาราง book ที่ id_isbn เท่ากับ $isbn ที่รับเข้ามา
 $query = "SELECT * FROM book WHERE id_isbn = '$isbn'";
 $book = $conn->query($query)->fetch();
 
@@ -29,19 +30,18 @@ $amount = $book['amount'];
 
 $imgeB = $book['imgeB'];
 
-
 //เลือก row ทั้งหมดจากตาราง type_book
 $queryTB = "SELECT * FROM type_book ORDER BY id_typeB";
 //เรียกใช้คำสั่ง ->query() 
 //ใช้คำสั่ง fetchAll() เพื่อเก็บผลลัพธ์ที่ได้จาก query ไว้ในตัวแปร $typeBooks
 $typeBooks = $conn->query($queryTB)->fetchAll();
 
+//เลือก row ทั้งหมดจากตาราง publisher_name
 $queryTB = "SELECT * FROM publisher_name ORDER BY id_publisher";
 $idPublishers = $conn->query($queryTB)->fetchAll();
+//เลือก row ทั้งหมดจากตาราง author
 $queryTB = "SELECT * FROM author ORDER BY id_author";
 $authorSs = $conn->query($queryTB)->fetchAll();
-
-
 
 ?>
 <!DOCTYPE html>
@@ -67,20 +67,9 @@ $authorSs = $conn->query($queryTB)->fetchAll();
         <div style="flex-grow: 1;text-align: left;font-family: arial;color: white;font-size: 50px;">
             <strong>|BOOK details</strong>
         </div>
-        <div class="C-header-loging">
-            <ul>
-                <form>
-                    <!-- hello admin-->
-                    <!--
-                    <a href="home_index.php" style="text-decoration: none;">
-                        <p class="login-button">cancel</p>
-                    </a>
-                    -->
-                </form>
-            </ul>
-        </div>
     </div>
     <hr>
+    <!-- แสดงเนื้อหา -->
     <article>
         <div class="d-flex justify-content-center">
             <div class="w-50">
@@ -95,7 +84,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                     </div>
                     <div class="form-floating">
                         <select name="id_typeB" class="form-select" disabled>
-                            <?php foreach ($typeBooks as $key => $typeBook) : ?>
+                            <?php foreach ($typeBooks as $key => $typeBook) : ?><!-- ใส่เงื่อนไขว่าถ้า option value ไหรตรงให้ echo 'selected' -->
                                 <option value="<?php echo $typeBook['id_typeB']; ?>" <?php if ($typeBook['id_typeB'] === $id_typeB) echo 'selected'; ?>>
                                     <?php echo $typeBook['typeN']; ?>
                                 </option>
@@ -110,7 +99,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                     </div>
                     <div class="form-floating">
                         <select name="id_publisher" class="form-select" disabled>
-                            <?php foreach ($idPublishers as $key => $idPublisher) : ?>
+                            <?php foreach ($idPublishers as $key => $idPublisher) : ?><!-- ใส่เงื่อนไขว่าถ้า option value ไหรตรงให้ echo 'selected' -->
                                 <option value="<?php echo $idPublisher['id_publisher']; ?>" <?php if ($idPublisher['id_publisher'] === $id_publisher) echo 'selected'; ?>>
                                     <?php echo $idPublisher['publisherN']; ?>
                                 </option>

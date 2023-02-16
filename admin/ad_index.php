@@ -209,8 +209,8 @@ $users = $conn->query($query)->fetchAll();
                     <td><?php echo $user['price']; ?></td>
                     <td><?php echo $user['amount']; ?></td>
                     <td>
-                        <a href="#" onclick="deleteBook(<?= $user['idISBN'] ?>)" class="btn btn-danger">Delete</a>
-                        <a href="edit_book.php?id=<?= $user['idISBN'] ?>" class="btn btn-warning">Edit</a>
+                        <a href="#" onclick="deleteBook(<?= $user['idISBN'] ?>)" class="btn btn-danger">ลบ</a>
+                        <a href="edit_book.php?id=<?= $user['idISBN'] ?>" class="btn btn-warning">แก้ไข</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

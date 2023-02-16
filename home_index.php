@@ -1,10 +1,12 @@
 <?php
 session_start();
+//ทำการเชื่อมต่อ server
 require_once 'server.php';
 
+//กำหนดขนาดหนังสือที่แสดงต่อหน้า
 $perPage = 8;
 
-// Check if search value is set
+// เช็คขนาดของหนังสือที่เกิดจากการค้น
 if (isset($_GET['search']) && isset($_GET['sort_order'])) {
     $search = $_GET['search'];
     $sort_order = $_GET['sort_order'];
@@ -12,7 +14,7 @@ if (isset($_GET['search']) && isset($_GET['sort_order'])) {
     $total_results = $stmt->fetchColumn();
     $total_pages = ceil($total_results / $perPage);
 } else {
-    // Calculate Total pages
+    // กรณีที่เปิดหน้าเว็บครั้งแรกเพราะเมื่อเปิดครั้งแรกจะไม่มีค่าใส่เหมือนข้างบน
     $stmt = $conn->query('SELECT count(*) FROM book');
     $total_results = $stmt->fetchColumn();
     $total_pages = ceil($total_results / $perPage);
@@ -23,7 +25,7 @@ if (isset($_GET['search']) && isset($_GET['sort_order'])) {
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $starting_limit = ($page - 1) * $perPage;
 
-// Query to fetch users
+// Query to fetch users เป็นการ Query ข้อมูล
 if (isset($_GET['search']) && isset($_GET['sort_order'])) {
     $search = $_GET['search'];
     $sort_order = $_GET['sort_order'];
@@ -33,7 +35,7 @@ if (isset($_GET['search']) && isset($_GET['sort_order'])) {
 }
 
 // Fetch all users for current page
-$users = $conn->query($query)->fetchAll();
+$bookFromSearch = $conn->query($query)->fetchAll();
 ?>
 
 
@@ -60,6 +62,7 @@ $users = $conn->query($query)->fetchAll();
         <div style="flex-grow: 1;text-align: left;font-family: arial;color: white;;font-size: 50px;">
             <strong>|BOOK STORE</strong>
         </div>
+        <!-- ส่วน login -->
         <div class="C-header-loging">
             <ul>
                 <form action="operation/signin.php" method="post">
@@ -71,6 +74,7 @@ $users = $conn->query($query)->fetchAll();
         </div>
     </div>
     <hr>
+    <!-- แจ้งเตือนเมื่อลงชื่อเข้าใช้ผิด -->
     <?php if (isset($_SESSION['error_username']) or isset($_SESSION['error_password'])) { ?>
         <div class="error">
 
@@ -95,6 +99,7 @@ $users = $conn->query($query)->fetchAll();
         <hr>
     <?php } ?>
     <!-- <article> -->
+    <!-- ส่วนการค้นหา -->
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" class="form-search">
         <select name="sort_order" class="form-control">
             <option value="asc" <?php if ($_GET['sort_order'] == "asc") echo 'selected'; ?> >น้อย->มาก </option>
@@ -104,6 +109,7 @@ $users = $conn->query($query)->fetchAll();
         <input type="submit" class="btn btn-primary" value="ค้นหา">
     </form>
     <br>
+     <!-- ส่วนแสดงคำค้นหา -->
     <?php if (empty($search)) {
     } else { ?>
         <?php
@@ -120,8 +126,9 @@ $users = $conn->query($query)->fetchAll();
 
     <hr>
     <div class="d-flex flex-wrap justify-content-sm-center">
-        <?php if (count($users) > 0) : ?>
-            <?php foreach ($users as $key => $user) : ?>
+        <!-- ส่วนแสดงหนังสือ -->
+        <?php if (count($bookFromSearch) > 0) : ?><!-- ถ้ามีหนังสือจากการค้นหามากกว่า 0 -->
+            <?php foreach ($bookFromSearch as $key => $user) : ?>
                 <div class="card m-3" style="width: 20rem;padding: 1rem;">
                     <img class="card-img-top" src="image/upload/<?php echo $user['imgeBook']; ?>" alt="" height="300px" width="100px">
                     <div class="card-body">
@@ -134,17 +141,17 @@ $users = $conn->query($query)->fetchAll();
                     <div class="w-100"></div>
                 <?php endif; ?>
             <?php endforeach; ?>
-        <?php else : ?>
+        <?php else : ?><!-- ถ้าไม่มีหนังสือจากการค้นหา -->
             <div class="text-center">No results found for "<?php echo $search; ?>"</div>
         <?php endif; ?>
     </div>
     <hr>
     <br>
     <?php if ($total_pages > 1) { ?>
-        <?php if (isset($_GET['search']) && isset($_GET['sort_order'])) { ?>
+        <?php if (isset($_GET['search']) && isset($_GET['sort_order'])) { ?><!-- แสดงแถบหน้าเมื่อค้นหาด้วยคำศัพท์ -->
             <div class="pagination">
                 <ul>
-                    <?php if (count($users) > 0) : ?>
+                    <?php if (count($bookFromSearch) > 0) : ?><!-- ถ้าไม่มีหนังสือจากการค้นหาหรือมีไม่เกิน1หน้า -->
                         <li><a href='?page=1&search=<?php echo $search; ?>&sort_order=<?php echo $sort_order; ?>' class="pagination-link">หน้าแรก</a></li>
                     <?php endif; ?>
                     <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
@@ -154,15 +161,15 @@ $users = $conn->query($query)->fetchAll();
                             </a>
                         </li>
                     <?php endfor; ?>
-                    <?php if (count($users) > 0) : ?>
+                    <?php if (count($bookFromSearch) > 0) : ?><!-- ถ้าไม่มีหนังสือจากการค้นหาหรือมีไม่เกิน1หน้า -->
                         <li><a href='?page=<?php echo $total_pages; ?>&search=<?php echo $search; ?>&sort_order=<?php echo $sort_order; ?>' class="pagination-link">หน้าสุดท้าย</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
-        <?php } else { ?>
+        <?php } else { ?><!-- แสดงแถบหน้าเมื่อเปิดเว็บครั้งแรก -->
             <div class="pagination">
                 <ul>
-                    <?php if (count($users) > 0) : ?>
+                    <?php if (count($bookFromSearch) > 0) : ?><!-- ถ้าไม่มีหนังสือจากการค้นหาหรือมีไม่เกิน1หน้า -->
                         <li><a href='?page=1' class="pagination-link">หน้าแรก</a></li>
                     <?php endif; ?>
                     <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
@@ -172,13 +179,13 @@ $users = $conn->query($query)->fetchAll();
                             </a>
                         </li>
                     <?php endfor; ?>
-                    <?php if (count($users) > 0) : ?>
+                    <?php if (count($bookFromSearch) > 0) : ?><!-- ถ้าไม่มีหนังสือจากการค้นหาหรือมีไม่เกิน1หน้า -->
                         <li><a href='?page=<?php echo $total_pages; ?>' class="pagination-link">หน้าสุดท้าย</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
         <?php } ?>
-        <?php if (count($users) > 0) : ?>
+        <?php if (count($bookFromSearch) > 0) : ?>
             <br>
     <?php endif;
     } ?>

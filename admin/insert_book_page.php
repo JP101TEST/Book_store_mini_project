@@ -186,7 +186,7 @@ if (isset($_GET['id_isbn'])) {
                     <br>
                     <div class="d-flex justify-content-between">
                         <div>
-                            <input type="reset" value="ล้าง" class="btn btn-secondary">
+                            <input type="reset" value="ล้าง" onclick="window.location.href = 'insert_book_page.php';" class="btn btn-secondary">
                         </div>
                         <div>
                             <input type="submit" name="back" value="ย้อนกลับ" class="btn btn-warning">
