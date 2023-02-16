@@ -108,7 +108,7 @@ $users = $conn->query($query)->fetchAll();
                     <div class="card m-3" style="width: 20rem;padding: 1rem;">
                         <img class="card-img-top" src="../image/upload/<?php echo $user['imgeBook']; ?>" alt="" height="300px" width="100px">
                         <div class="card-body">
-                            <a href="../detail_book.php?idISBN=<?php echo $user['idISBN']; ?>&user=<?php echo "true";?>" class="btn btn-primary d-block">
+                            <a href="../operation/detail_book.php?idISBN=<?php echo $user['idISBN']; ?>&user=<?php echo "true";?>" class="btn btn-primary d-block">
                                 <h5 class="card-text text-center overflow-auto" style="font-size: 13px; max-height: 50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="หนังสือ : <?php echo $user['bookName']; ?>"><?php echo $user['bookName']; ?></h5>
                             </a>
                         </div>
