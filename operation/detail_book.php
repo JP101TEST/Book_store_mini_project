@@ -3,8 +3,10 @@ session_start();
 require_once '../server.php';
 
 if (isset($_POST['back'])) {
-    if (isset($_GET['user'])) {
+    if (isset($_GET['user']) && $_GET['user']=="us") {
         header('location: ../user/user_index.php');
+    }if (isset($_GET['user']) && $_GET['user']=="ad") {
+        header('location: ../admin/ad_index.php');
     }else {
         header('location: ../home_index.php');
     }
@@ -55,7 +57,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $_SESSION['urole_admin']; ?></title>
+    <title><?php echo "Detail book"; ?></title>
     <link rel="icon" href="../image/book_logo_color.png">
     <!-- css -->
     <link rel="stylesheet" href="../style.css">

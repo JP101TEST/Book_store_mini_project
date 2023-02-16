@@ -127,6 +127,7 @@ if (isset($_POST['insert'])) {
                     $stmt->bindParam(":price", $price);
                     $stmt->bindParam(":amount", $amount);
                     $stmt->execute();
+                    header("location: ../admin/ad_index.php");
                 }
             }
         } catch (\Throwable $e) {
@@ -138,5 +139,5 @@ if (isset($_POST['insert'])) {
     /*echo '<a href="../admin/ad_index.php" style="text-decoration: none;">
     <p class="login-button-admin">cancel</p>
 </a>';*/
-    header("location: ../admin/ad_index.php");
+    
 }

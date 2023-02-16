@@ -103,14 +103,14 @@ $bookFromSearch = $conn->query($query)->fetchAll();
     <!-- ส่วนการค้นหา -->
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" class="form-search">
         <select name="sort_order" class="form-control">
-            <option value="asc" <?php if ($_GET['sort_order'] == "asc") echo 'selected'; ?> >น้อย->มาก </option>
-            <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?> >มาก->น้อย </option>
+            <option value="asc" <?php if ($_GET['sort_order'] == "asc") echo 'selected'; ?>>น้อย->มาก </option>
+            <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?>>มาก->น้อย </option>
         </select>
-        <input type="text" name="search" class="form-control-form-c" placeholder="ชื่อหนังสือ" <?php if ($_GET['search'] != "") echo 'value='.$_GET['search']; ?> >
+        <input type="text" name="search" class="form-control-form-c" placeholder="ชื่อหนังสือ" <?php if ($_GET['search'] != "") echo 'value=' . $_GET['search']; ?>>
         <input type="submit" class="btn btn-primary" value="ค้นหา">
     </form>
     <br>
-     <!-- ส่วนแสดงคำค้นหา -->
+    <!-- ส่วนแสดงคำค้นหา -->
     <?php if (empty($search)) {
     } else { ?>
         <?php
@@ -131,7 +131,14 @@ $bookFromSearch = $conn->query($query)->fetchAll();
         <?php if (count($bookFromSearch) > 0) : ?><!-- ถ้ามีหนังสือจากการค้นหามากกว่า 0 -->
             <?php foreach ($bookFromSearch as $key => $user) : ?>
                 <div class="card m-3" style="width: 20rem;padding: 1rem;">
-                    <img class="card-img-top" src="image/upload/<?php echo $user['imgeBook']; ?>" alt="" height="300px" width="100px">
+                    <?php
+                    $image_path = "image/upload/" . $user['imgeBook'];
+                    if (file_exists($image_path)) {
+                        echo '<img class="card-img-top" src="' . $image_path . '" alt="" height="300px" width="100px">';
+                    } else {
+                        echo '<p>No image in folder</p>';
+                    }
+                    ?>
                     <div class="card-body">
                         <a href="operation/detail_book.php?idISBN=<?php echo $user['idISBN']; ?>" class="btn btn-primary d-block">
                             <h5 class="card-text text-center overflow-auto" style="font-size: 13px; max-height: 50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="หนังสือ : <?php echo $user['bookName']; ?>"><?php echo $user['bookName']; ?></h5>

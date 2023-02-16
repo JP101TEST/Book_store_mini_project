@@ -136,7 +136,7 @@ if (isset($_GET['id_isbn'])) {
                         <label for="id_typeB" style="font-family: Arial;font-size: 18px;">Type book:</label>
                     </div>
                     <div class="form-floating">
-                        <input type="text" name="bookN" class="form-control" pattern="[a-zA-Z0-9ก-๙-' ]*" <?php if (isset($_GET['bookN'])) {
+                        <input type="text" name="bookN" class="form-control" pattern="[a-zA-Z0-9ก-๙-' ]*" title="Use a-z A-Z 0-9 ก-๙ and - ' only" <?php if (isset($_GET['bookN'])) {
                                                                                                                 echo 'value="' . $bookN . '"';
                                                                                                             } ?>><br>
                         <label for="bookN" style="font-family: Arial;font-size: 18px;">Book name:</label>
@@ -190,7 +190,7 @@ if (isset($_GET['id_isbn'])) {
                             <input type="reset" value="ล้าง" onclick="window.location.href = 'insert_book_page.php';" class="btn btn-secondary">
                         </div>
                         <div>
-                            <input type="submit" name="back" value="ย้อนกลับ" class="btn btn-warning">
+                            <input type="submit" name="back" value="ย้อนกลับ" onclick="window.location.href = 'ad_index.php';" class="btn btn-warning">
                         </div>
                         <div>
                             <input type="submit" name="insert" value="เพิ่ม" class="btn btn-primary">

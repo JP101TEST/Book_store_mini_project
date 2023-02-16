@@ -138,18 +138,18 @@ $users = $conn->query($query)->fetchAll();
         <hr>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" class="form-search">
             <select name="search_criteria" class="form-control">
-                <option value="id_isbn" <?php if ($_GET['search_criteria'] == "id_isbn") echo 'selected'; ?> >ID ISBN</option>
-                <option value="bookN" <?php if ($_GET['search_criteria'] == "bookN") echo 'selected'; ?> >ชื่อหนังสือ</option>
-                <option value="publisherN" <?php if ($_GET['search_criteria'] == "publisherN") echo 'selected'; ?> >ผู้จัดจำหน่าย</option>
-                <option value="authorName" <?php if ($_GET['search_criteria'] == "authorName") echo 'selected'; ?> >ผู้เขียน</option>
-                <option value="price" <?php if ($_GET['search_criteria'] == "price") echo 'selected'; ?> >ราคา</option>
-                <option value="amount" <?php if ($_GET['search_criteria'] == "amount") echo 'selected'; ?> >จำนวน</option>
+                <option value="id_isbn" <?php if ($_GET['search_criteria'] == "id_isbn") echo 'selected'; ?>>ID ISBN</option>
+                <option value="bookN" <?php if ($_GET['search_criteria'] == "bookN") echo 'selected'; ?>>ชื่อหนังสือ</option>
+                <option value="publisherN" <?php if ($_GET['search_criteria'] == "publisherN") echo 'selected'; ?>>ผู้จัดจำหน่าย</option>
+                <option value="authorName" <?php if ($_GET['search_criteria'] == "authorName") echo 'selected'; ?>>ผู้เขียน</option>
+                <option value="price" <?php if ($_GET['search_criteria'] == "price") echo 'selected'; ?>>ราคา</option>
+                <option value="amount" <?php if ($_GET['search_criteria'] == "amount") echo 'selected'; ?>>จำนวน</option>
             </select>
             <select name="sort_order" class="form-control">
                 <option value="asc" <?php if ($_GET['sort_order'] == "asc") echo 'selected'; ?>>น้อย->มาก </option>
                 <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?>>มาก->น้อย </option>
             </select>
-            <input type="text" name="search" class="form-control-form-c" placeholder="Search" <?php if ($_GET['search'] != "") echo 'value='.$_GET['search']; ?> >
+            <input type="text" name="search" class="form-control-form-c" placeholder="Search" <?php if ($_GET['search'] != "") echo 'value=' . $_GET['search']; ?>>
             <input type="submit" class="btn btn-primary" value="ค้นหา">
         </form>
     </article>
@@ -190,10 +190,12 @@ $users = $conn->query($query)->fetchAll();
                 <th>ชื่อหนังสือ</th>
                 <th>รูป</th>
                 <th>ประเภทหนังสือ</th>
+                <!--
                 <th>ผู้จัดจำหน่าย</th>
                 <th>ผู้เขียน</th>
                 <th>ราคา</th>
                 <th>จำนวน</th>
+        -->
                 <th>จัดการ</th>
             </tr>
         <?php endif; ?>
@@ -203,15 +205,25 @@ $users = $conn->query($query)->fetchAll();
                 <tr>
                     <td><?php echo $user['idISBN']; ?></td>
                     <td><?php echo $user['bookName']; ?></td>
-                    <td><img src="../image/upload/<?php echo $user['imgeBook']; ?>" alt="" height="200px" width="130px"></td>
+                    <?php
+                    $image_path = "../image/upload/" . $user['imgeBook'];
+                    if (file_exists($image_path)) {
+                        echo '<td><img src="' . $image_path . '" alt="" height="200px" width="130px"></td>';
+                    } else {
+                        echo '<td>No image in folder</td>';
+                    }
+                    ?>
                     <td><?php echo $user['bookType']; ?></td>
+                    <!--
                     <td><?php echo $user['publisherName']; ?></td>
                     <td><?php echo $user['authorName']; ?></td>
                     <td><?php echo $user['price']; ?></td>
                     <td><?php echo $user['amount']; ?></td>
+                    -->
                     <td>
                         <a href="#" onclick="deleteBook(<?= $user['idISBN'] ?>)" class="btn btn-danger">ลบ</a>
                         <a href="edit_book.php?id=<?= $user['idISBN'] ?>" class="btn btn-warning">แก้ไข</a>
+                        <a href="../operation/detail_book.php?idISBN=<?php echo $user['idISBN']; ?>&user=<?php echo "ad"; ?>" class="btn btn-info">รายละเอียด</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

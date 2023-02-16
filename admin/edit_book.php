@@ -150,7 +150,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                     </div>
 
                     <div class="form-floating">
-                        <input type="text" name="bookN" class="form-control" pattern="[a-zA-Z0-9ก-๙ ]*" value="<?php echo $bookN; ?>"><br>
+                        <input type="text" name="bookN" class="form-control" pattern="[a-zA-Z0-9ก-๙ ]*" title="Use a-z A-Z 0-9 ก-๙ and - ' only" value="<?php echo $bookN; ?>"><br>
                         <label for="bookN" style="font-family: Arial;font-size: 18px;">New book name:</label>
                     </div>
                     <div>
