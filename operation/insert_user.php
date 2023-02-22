@@ -127,7 +127,7 @@ if (isset($_POST['insert'])) {
                     $stmt->bindParam(":price", $price);
                     $stmt->bindParam(":amount", $amount);
                     $stmt->execute();
-                    function phpAlert($msg) {
+                    function phpAlert($msg) {//Alert
                         echo '<script type="text/javascript">alert("' . $msg . '");window.location.href = "../admin/ad_index.php";</script>';
                     }
                     phpAlert( "เพิ่มหนังสือเสร็จสิ้น");

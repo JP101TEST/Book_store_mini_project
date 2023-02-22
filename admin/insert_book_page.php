@@ -150,7 +150,7 @@ if (isset($_GET['id_isbn'])) {
                     </div>
                     <div class="form-floating">
                         <select name="id_publisher" class="form-select">
-                            <?php foreach ($idPublishers as $key => $idPublisher) : ?>
+                            <?php foreach ($idPublishers as $key => $idPublisher) : ?><!-- loop แสดง publisher -->
                                 <option value="<?php echo $idPublisher['id_publisher']; ?>" <?php if (isset($id_publisher) && $idPublisher['id_publisher'] == $id_publisher) {
                                                                                                 echo 'selected';
                                                                                             } ?>>
@@ -162,7 +162,7 @@ if (isset($_GET['id_isbn'])) {
                     </div>
                     <div class="form-floating">
                         <select name="id_author" class="form-select">
-                            <?php foreach ($authorSs as $key => $authorS) : ?>
+                            <?php foreach ($authorSs as $key => $authorS) : ?><!-- loop แสดง author -->
                                 <option value="<?php echo $authorS['id_author']; ?>" <?php if (isset($id_author) && $authorS['id_author'] == $id_author) {
                                                                                             echo 'selected';
                                                                                         } ?>>

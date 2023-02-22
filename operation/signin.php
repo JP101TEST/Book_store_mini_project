@@ -34,16 +34,16 @@ if (isset($_POST['signin'])){
                 $checkUsername->execute();
                 $row = $checkUsername->fetch(PDO::FETCH_ASSOC);
                 if ($checkUsername->rowCount() > 0) {
-                    # code...
+                    
                     if ($username == $row['Username']) {
-                        # code...
+                        
                         echo "มีชื่อนี้อยู่ในระบบ <br>";
                         echo implode(", ",$row)."<br>";
                         if ($password==$row['Userpassword']) {
-                            # code...
+                            
                             echo "รหัสผ่านถูก <br>";
-                            if ($row['Username']== "admin") {
-                                # code...
+                            if ($row['Username']== "admin") {//ถ้า Username เป็น admin
+                                
                                 $_SESSION['urole_admin'] = $row['Username'];
                                 echo $row['Username']." ตำแหน่ง admin <br>";
                                 //echo '<a href="../admin/ad_index.php"> เข้าสู่ระบบ </a>';

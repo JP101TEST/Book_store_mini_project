@@ -7,7 +7,7 @@ require_once 'server.php';
 $perPage = 8;
 
 // เช็คขนาดของหนังสือที่เกิดจากการค้น
-if (isset($_GET['search']) && isset($_GET['sort_order'])) {
+if (isset($_GET['search']) && isset($_GET['sort_order'])) { //ค้นหา
     $search = $_GET['search'];
     $sort_order = $_GET['sort_order'];
     $stmt = $conn->query("SELECT count(*) FROM book WHERE bookN LIKE '%$search%' ORDER BY bookN $sort_order");
@@ -26,7 +26,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $starting_limit = ($page - 1) * $perPage;
 
 // Query to fetch users เป็นการ Query ข้อมูล
-if (isset($_GET['search']) && isset($_GET['sort_order'])) {
+if (isset($_GET['search']) && isset($_GET['sort_order'])) { //ค้นหา
     $search = $_GET['search'];
     $sort_order = $_GET['sort_order'];
     $query = "SELECT  b.id_isbn as idISBN, b.bookN as bookName, b.imgeB as imgeBook, tb.typeN as bookType, pn.publisherN as publisherName, CONCAT(au.authorFN,' ',au.authorLN) as authorName, b.price, b.amount FROM book AS b INNER JOIN type_book AS tb ON b.id_typeB = tb.id_typeB INNER JOIN publisher_name AS pn ON b.id_publisher = pn.id_publisher INNER JOIN author AS au ON b.id_author = au.id_author WHERE  b.bookN LIKE '%$search%' ORDER BY b.bookN $sort_order  LIMIT $starting_limit,$perPage";
@@ -103,10 +103,21 @@ $bookFromSearch = $conn->query($query)->fetchAll();
     <!-- ส่วนการค้นหา -->
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" class="form-search">
         <select name="sort_order" class="form-control">
-            <option value="asc" <?php if ($_GET['sort_order'] == "asc") echo 'selected'; ?>>น้อย->มาก </option>
-            <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?>>มาก->น้อย </option>
+            <?php if (isset($_GET['sort_order'])) {
+            ?>
+                <option value="asc" <?php if ($_GET['sort_order'] == "asc") echo 'selected'; ?>>น้อย->มาก </option>
+                <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?>>มาก->น้อย </option>
+            <?php } else { ?>
+                <option value="asc" selected>น้อย->มาก </option>
+                <option value="desc">มาก->น้อย </option>
+            <?php } ?>
         </select>
-        <input type="text" name="search" class="form-control-form-c" placeholder="ชื่อหนังสือ" <?php if ($_GET['search'] != "") echo 'value=' . $_GET['search']; ?>>
+        <?php if (isset($_GET['search'])) {
+        ?>
+            <input type="text" name="search" class="form-control-form-c" placeholder="ชื่อหนังสือ" <?php if ($_GET['search'] != "") echo 'value=' . $_GET['search']; ?>>
+        <?php } else { ?>
+            <input type="text" name="search" class="form-control-form-c" placeholder="ชื่อหนังสือ">
+        <?php } ?>
         <input type="submit" class="btn btn-primary" value="ค้นหา">
     </form>
     <br>

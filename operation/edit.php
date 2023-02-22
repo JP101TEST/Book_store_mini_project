@@ -132,7 +132,7 @@ if (isset($_POST['edit'])) {
         $stmt->bindParam(":amount", $amount);
         $stmt->execute();
     }
-    function phpAlert($msg) {
+    function phpAlert($msg) {//Alert
         echo '<script type="text/javascript">alert("' . $msg . '");window.location.href = "../admin/ad_index.php";</script>';
     }
     phpAlert( "แก้ไขเสร็จสิ้น");

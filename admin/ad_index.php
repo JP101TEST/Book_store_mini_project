@@ -138,18 +138,39 @@ $users = $conn->query($query)->fetchAll();
         <hr>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" class="form-search">
             <select name="search_criteria" class="form-control">
-                <option value="id_isbn" <?php if ($_GET['search_criteria'] == "id_isbn") echo 'selected'; ?>>ID ISBN</option>
-                <option value="bookN" <?php if ($_GET['search_criteria'] == "bookN") echo 'selected'; ?>>ชื่อหนังสือ</option>
-                <option value="publisherN" <?php if ($_GET['search_criteria'] == "publisherN") echo 'selected'; ?>>ผู้จัดจำหน่าย</option>
-                <option value="authorName" <?php if ($_GET['search_criteria'] == "authorName") echo 'selected'; ?>>ผู้เขียน</option>
-                <option value="price" <?php if ($_GET['search_criteria'] == "price") echo 'selected'; ?>>ราคา</option>
-                <option value="amount" <?php if ($_GET['search_criteria'] == "amount") echo 'selected'; ?>>จำนวน</option>
+                <?php if (isset($_GET['search_criteria'])) {
+                ?>
+                    <option value="id_isbn" <?php if ($_GET['search_criteria'] == "id_isbn") echo 'selected'; ?>>ID ISBN</option>
+                    <option value="bookN" <?php if ($_GET['search_criteria'] == "bookN") echo 'selected'; ?>>ชื่อหนังสือ</option>
+                    <option value="publisherN" <?php if ($_GET['search_criteria'] == "publisherN") echo 'selected'; ?>>ผู้จัดจำหน่าย</option>
+                    <option value="authorName" <?php if ($_GET['search_criteria'] == "authorName") echo 'selected'; ?>>ผู้เขียน</option>
+                    <option value="price" <?php if ($_GET['search_criteria'] == "price") echo 'selected'; ?>>ราคา</option>
+                    <option value="amount" <?php if ($_GET['search_criteria'] == "amount") echo 'selected'; ?>>จำนวน</option>
+                <?php } else { ?>
+                    <option value="id_isbn" selected>ID ISBN</option>
+                    <option value="bookN">ชื่อหนังสือ</option>
+                    <option value="publisherN">ผู้จัดจำหน่าย</option>
+                    <option value="authorName">ผู้เขียน</option>
+                    <option value="price">ราคา</option>
+                    <option value="amount">จำนวน</option>
+                <?php } ?>
             </select>
             <select name="sort_order" class="form-control">
-                <option value="asc" <?php if ($_GET['sort_order'] == "asc") echo 'selected'; ?>>น้อย->มาก </option>
-                <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?>>มาก->น้อย </option>
+                <?php if (isset($_GET['sort_order'])) {
+                ?>
+                    <option value="asc" <?php if ($_GET['sort_order'] == "asc") echo 'selected'; ?>>น้อย->มาก </option>
+                    <option value="desc" <?php if ($_GET['sort_order'] == "desc") echo 'selected'; ?>>มาก->น้อย </option>
+                <?php } else { ?>
+                    <option value="asc" selected>น้อย->มาก </option>
+                    <option value="desc">มาก->น้อย </option>
+                <?php } ?>
             </select>
-            <input type="text" name="search" class="form-control-form-c" placeholder="Search" <?php if ($_GET['search'] != "") echo 'value=' . $_GET['search']; ?>>
+            <?php if (isset($_GET['search'])) {
+            ?>
+                <input type="text" name="search" class="form-control-form-c" placeholder="ชื่อหนังสือ" <?php if ($_GET['search'] != "") echo 'value=' . $_GET['search']; ?>>
+            <?php } else { ?>
+                <input type="text" name="search" class="form-control-form-c" placeholder="ชื่อหนังสือ">
+            <?php } ?>
             <input type="submit" class="btn btn-primary" value="ค้นหา">
         </form>
     </article>

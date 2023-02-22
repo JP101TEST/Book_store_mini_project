@@ -2,12 +2,12 @@
 session_start();
 require_once '../server.php';
 
-if (isset($_POST['back'])) {
-    if (isset($_GET['user']) && $_GET['user']=="us") {
+if (isset($_POST['back'])) {//เช็คว่าเข้ามาในสถานะอะไร
+    if (isset($_GET['user']) && $_GET['user']=="us") {//user
         header('location: ../user/user_index.php');
-    }else if (isset($_GET['user']) && $_GET['user']=="ad") {
+    }else if (isset($_GET['user']) && $_GET['user']=="ad") {//admin
         header('location: ../admin/ad_index.php');
-    }else {
+    }else {//หน้าหลัก
         header('location: ../home_index.php');
     }
 }
