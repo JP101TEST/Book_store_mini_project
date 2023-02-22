@@ -5,7 +5,7 @@ require_once '../server.php';
 if (isset($_POST['back'])) {
     if (isset($_GET['user']) && $_GET['user']=="us") {
         header('location: ../user/user_index.php');
-    }if (isset($_GET['user']) && $_GET['user']=="ad") {
+    }else if (isset($_GET['user']) && $_GET['user']=="ad") {
         header('location: ../admin/ad_index.php');
     }else {
         header('location: ../home_index.php');

@@ -190,7 +190,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                             <input type="submit" name="back" value="ย้อนกลับ" class="btn btn-warning">
                         </div>
                         <div>
-                            <input type="submit" name="edit" value="เพิ่ม" class="btn btn-primary">
+                            <input type="submit" name="edit" value="แก้ไข" class="btn btn-primary">
                         </div>
                     </div>
                     <br>

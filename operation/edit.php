@@ -37,7 +37,7 @@ if (isset($_POST['edit'])) {
         //header("location: ../admin/edit_book.php?id=$id_isbn");
         $price = $_GET['Oprice'];
     }
-    if ($_POST['amount'] == ""){
+    if ($_POST['amount'] == "") {
         $amount = $_GET['Oamount'];
     }
     try {
@@ -84,7 +84,7 @@ if (isset($_POST['edit'])) {
     //เช็คค่าซ้ำ
     if ($_GET['OName'] != $_POST['bookN'] && $_POST['bookN'] != "") {
         # code...
-        echo "ชื่อใหม่ไม่ซ้ำกับชื่อเดิม<br>";
+        //echo "ชื่อใหม่ไม่ซ้ำกับชื่อเดิม<br>";
         $bookN = $_POST['bookN'];
         $checkId_isbn = $conn->prepare("SELECT id_isbn FROM book WHERE bookN = :bookN"); //$userName
         $checkId_isbn->bindParam(":bookN", $bookN);
@@ -94,7 +94,7 @@ if (isset($_POST['edit'])) {
             $_SESSION['error_bookN'] = "มีชื่อหนังสือนี้อยู่ในระบบแล้ว";
             header("location: ../admin/edit_book.php?id=$id_isbn");
         } else {
-            echo "ยังไม่มีชื่อหนังสือนี้อยู่ในระบบ";
+            //echo "ยังไม่มีชื่อหนังสือนี้อยู่ในระบบ";
             /*
             $stmt = $conn->prepare("INSERT INTO `book`(`id_isbn`, `id_typeB`, `bookN`, `imgeB`, `id_publisher`, `id_author`, `price`, `amount`) VALUES (:id_isbn,:id_typeB,:bookN,:imgeB,:id_publisher,:id_author,:price,:amount)");
             $stmt->bindParam(":id_isbn", $id_isbn);
@@ -119,7 +119,7 @@ if (isset($_POST['edit'])) {
             $stmt->execute();
         }
     } else {
-        echo "ชื่อใหม่ซ้ำกับชื่อเดิม<br>";
+        //echo "ชื่อใหม่ซ้ำกับชื่อเดิม<br>";
         $bookN = $_GET['OName'];
         $stmt = $conn->prepare("UPDATE `book` SET `id_typeB` = :id_typeB, `bookN` = :bookN, `imgeB` = :imgeB, `id_publisher` = :id_publisher, `id_author` = :id_author, `price` = :price, `amount` = :amount WHERE `id_isbn` = :id_isbn");
         $stmt->bindParam(":id_isbn", $id_isbn);
@@ -132,7 +132,12 @@ if (isset($_POST['edit'])) {
         $stmt->bindParam(":amount", $amount);
         $stmt->execute();
     }
+    function phpAlert($msg) {
+        echo '<script type="text/javascript">alert("' . $msg . '");window.location.href = "../admin/ad_index.php";</script>';
+    }
+    phpAlert( "แก้ไขเสร็จสิ้น");
 
+    /*
     echo "รหัส ISBN :" . $id_isbn . "<br>";
     echo "ประเภทหนังสือ :" . $id_typeB_T['typeN'] . "<br>";
     echo "ชื่อหนังสือ :" . $bookN . "<br>";
@@ -141,9 +146,9 @@ if (isset($_POST['edit'])) {
     echo "ผู้เขียน :" . $id_author_T['authorFN'] . " " . $id_author_T['authorLN'] . "<br>";
     echo "ราคา :" . $price . "<br>";
     echo "จำนวน :" . $amount . "<br>";
-
+    echo "เสร็จสิ้น :" . $amount . "<br>";
     echo "<br>";
     echo '<a href="../admin/ad_index.php" style="text-decoration: none;">
-    <p class="login-button-admin">cancel</p>
-</a>';
+    <p class="login-button-admin">กลับสู่หน้าหลัก</p>
+</a>';*/
 }

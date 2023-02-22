@@ -105,7 +105,7 @@ if (isset($_POST['insert'])) {
                 header("location: ../admin/insert_book_page.php?id_isbn=$id_isbn&id_typeB=$id_typeB&bookN=$bookN&id_publisher=$id_publisher&id_author=$id_author&price=$price&amount=$amount&image_file=$image_file");
             } else {
                 # code...
-                echo "ไม่มี Id isbn นี้อยู่ในระบบ";
+                //echo "ไม่มี Id isbn นี้อยู่ในระบบ";
                 echo "<br>";
                 $checkId_isbn = $conn->prepare("SELECT id_isbn FROM book WHERE bookN = :bookN"); //$userName
                 $checkId_isbn->bindParam(":bookN", $bookN);
@@ -116,7 +116,7 @@ if (isset($_POST['insert'])) {
                     $_SESSION['error_bookN'] = "มีชื่อหนังสือนี้อยู่ในระบบแล้ว";
                     header("location: ../admin/insert_book_page.php?id_isbn=$id_isbn&id_typeB=$id_typeB&bookN=$bookN&id_publisher=$id_publisher&id_author=$id_author&price=$price&amount=$amount&image_file=$image_file");
                 } else {
-                    echo "ยังไม่มีชื่อหนังสือนี้อยู่ในระบบ";
+                    //echo "ยังไม่มีชื่อหนังสือนี้อยู่ในระบบ";
                     $stmt = $conn->prepare("INSERT INTO `book`(`id_isbn`, `id_typeB`, `bookN`, `imgeB`, `id_publisher`, `id_author`, `price`, `amount`) VALUES (:id_isbn,:id_typeB,:bookN,:imgeB,:id_publisher,:id_author,:price,:amount)");
                     $stmt->bindParam(":id_isbn", $id_isbn);
                     $stmt->bindParam(":id_typeB", $id_typeB);
@@ -127,7 +127,11 @@ if (isset($_POST['insert'])) {
                     $stmt->bindParam(":price", $price);
                     $stmt->bindParam(":amount", $amount);
                     $stmt->execute();
-                    header("location: ../admin/ad_index.php");
+                    function phpAlert($msg) {
+                        echo '<script type="text/javascript">alert("' . $msg . '");window.location.href = "../admin/ad_index.php";</script>';
+                    }
+                    phpAlert( "เพิ่มหนังสือเสร็จสิ้น");
+                    //header("location: ../admin/ad_index.php");
                 }
             }
         } catch (\Throwable $e) {
@@ -135,9 +139,9 @@ if (isset($_POST['insert'])) {
         }
     }
     echo "<br>";
-
+    //echo "เสร็จสิ้น :" . $amount . "<br>";
     /*echo '<a href="../admin/ad_index.php" style="text-decoration: none;">
-    <p class="login-button-admin">cancel</p>
+    <p class="login-button-admin">กลับสู่หน้าหลัก</p>
 </a>';*/
     
 }

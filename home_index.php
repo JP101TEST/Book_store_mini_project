@@ -60,7 +60,7 @@ $bookFromSearch = $conn->query($query)->fetchAll();
         <div class="C-header-logo">
             <img src="image/book_logo.png" alt="book_logo_color.png" height="75px" style="text-align: center;">
         </div>
-        <div style="flex-grow: 1;text-align: left;font-family: arial;color: white;;font-size: 50px;">
+        <div class="C-header-title">
             <strong>|BOOK STORE</strong>
         </div>
         <!-- ส่วน login -->
@@ -136,7 +136,7 @@ $bookFromSearch = $conn->query($query)->fetchAll();
                     if (file_exists($image_path)) {
                         echo '<img class="card-img-top" src="' . $image_path . '" alt="" height="300px" width="100px">';
                     } else {
-                        echo '<p>No image in folder</p>';
+                        echo '<p style="text-align: center;" >ไม่พบรูปภาพในคลัง</p>';
                     }
                     ?>
                     <div class="card-body">

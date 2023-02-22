@@ -23,6 +23,18 @@ article {
     border-radius: 30px;
 }
 
+.C-header-title {
+    flex-grow: 1;
+    text-align: left;
+    font-family: arial;
+    color: white;
+    ;
+    font-size: 50px;
+}
+.C-header-title-sub{
+   text-align: left;
+}
+
 .C-header div {
     padding-left: 10pt;
     padding-right: 10pt;
@@ -44,7 +56,7 @@ article {
     background-color: rgb(236, 116, 112);
 }
 
-.C-yellow-color{
+.C-yellow-color {
     background-color: rgb(236, 228, 112);
 }
 
@@ -93,8 +105,10 @@ article {
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-right: 4px;
-    width: 180px; /* adjust as needed */
-    margin-right: 10px; /* adjust as needed */
+    width: 180px;
+    /* adjust as needed */
+    margin-right: 10px;
+    /* adjust as needed */
 }
 
 .form-control-form-c {
@@ -102,8 +116,10 @@ article {
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-right: 4px;
-    width: 250px; /* adjust as needed */
-    margin-right: 10px; /* adjust as needed */
+    width: 250px;
+    /* adjust as needed */
+    margin-right: 10px;
+    /* adjust as needed */
 }
 
 
@@ -120,4 +136,18 @@ article {
     background-color: white;
     color: rgb(61, 93, 122);
     border-color: white;
+}
+
+@media (width <=1210px) {
+    .C-header {
+        display: block;
+        height: auto;
+        text-align: center;
+    }
+    .C-header-title{
+        text-align: center;
+    }
+    .C-header-title-sub{
+        text-align: center;
+     }
 }
