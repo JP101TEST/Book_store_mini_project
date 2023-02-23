@@ -7,11 +7,15 @@ if (!isset($_SESSION['urole_admin'])) {
 
 if (!isset($_GET['idISBN'])) {//เช็คว่ามีค่าเข้ามา
     $idISBN = $_GET['id'];
+    if ($_GET['id']=="0") {
+       $idISBN = "0000000000000";
+    }
     echo "ISBN : " . $idISBN . " is gone";
     //ลบหนังสือที่มีรหัส ISBN
     $stmt = $conn->prepare("DELETE FROM book WHERE id_isbn = :id_isbn");
     $stmt->bindParam(":id_isbn", $idISBN);
     $stmt->execute();
+    
     function phpAlert($msg) {//Alert
         echo '<script type="text/javascript">alert("' . $msg . '");window.location.href = "../admin/ad_index.php";</script>';
     }
