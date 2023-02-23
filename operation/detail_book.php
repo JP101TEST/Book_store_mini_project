@@ -92,7 +92,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                     <div class="form-floating">
                         <select name="id_typeB" class="form-select" disabled>
                             <?php foreach ($typeBooks as $key => $typeBook) : ?><!-- ใส่เงื่อนไขว่าถ้า option value ไหรตรงให้ echo 'selected' -->
-                                <option value="<?php echo $typeBook['id_typeB']; ?>" <?php if ($typeBook['id_typeB'] === $id_typeB) echo 'selected'; ?>>
+                                <option value="<?php echo $typeBook['id_typeB']; ?>" <?php if ($typeBook['id_typeB'] === $id_typeB) {echo "selected";} ?>>
                                     <?php echo $typeBook['typeN']; ?>
                                 </option>
                             <?php endforeach; ?>
@@ -107,7 +107,7 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                     <div class="form-floating">
                         <select name="id_publisher" class="form-select" disabled>
                             <?php foreach ($idPublishers as $key => $idPublisher) : ?><!-- ใส่เงื่อนไขว่าถ้า option value ไหรตรงให้ echo 'selected' -->
-                                <option value="<?php echo $idPublisher['id_publisher']; ?>" <?php if ($idPublisher['id_publisher'] === $id_publisher) echo 'selected'; ?>>
+                                <option value="<?php echo $idPublisher['id_publisher']; ?>" <?php if ($idPublisher['id_publisher'] === $id_publisher){echo "selected";}  ?>>
                                     <?php echo $idPublisher['publisherN']; ?>
                                 </option>
                             <?php endforeach; ?>
@@ -117,7 +117,8 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                     <div class="form-floating">
                         <select name="id_author" class="form-select" disabled>
                             <?php foreach ($authorSs as $key => $authorS) : ?>
-                                <option value="<?php echo $authorS['id_author']; ?>">
+                                <option value="<?php echo $authorS['id_author']; ?> "
+                                <?php if ($authorS['id_author'] === $id_author){echo "selected";}  ?> >
                                     <?php echo $authorS['authorFN'] . " " . $authorS['authorLN']; ?></option>
                             <?php endforeach; ?>
                         </select><br>

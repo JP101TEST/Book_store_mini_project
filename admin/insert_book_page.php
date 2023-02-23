@@ -173,7 +173,7 @@ if (isset($_GET['id_isbn'])) {
                         <label for="id_author" style="font-family: Arial;font-size: 18px;">Author:</label>
                     </div>
                     <div class="form-floating">
-                        <input type="number" name="price" id="priceI" min="0" class="form-control" <?php if (isset($_GET['price'])) {
+                        <input type="number" name="price" id="priceI" min="1" class="form-control" <?php if (isset($_GET['price'])) {
                                                                                                         echo 'value="' . $price . '"';
                                                                                                     } ?>><br>
                         <label for="priceI" style="font-family: Arial;font-size: 18px;">Price:</label>

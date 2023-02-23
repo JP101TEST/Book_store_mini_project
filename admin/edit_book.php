@@ -170,14 +170,15 @@ $authorSs = $conn->query($queryTB)->fetchAll();
                     <div class="form-floating">
                         <select name="id_author" class="form-select">
                             <?php foreach ($authorSs as $key => $authorS) : ?>
-                                <option value="<?php echo $authorS['id_author']; ?>">
+                                <option value="<?php echo $authorS['id_author']; ?>"
+                                <?php if ($authorS['id_author'] === $id_author){echo "selected";}  ?>>
                                     <?php echo $authorS['authorFN'] . " " . $authorS['authorLN']; ?></option>
                             <?php endforeach; ?>
                         </select><br>
                         <label for="id_author" style="font-family: Arial;font-size: 18px;">New author:</label>
                     </div>
                     <div class="form-floating">
-                        <input type="number" name="price" min="0" class="form-control" value="<?php echo $price; ?>"><br>
+                        <input type="number" name="price" min="1" class="form-control" value="<?php echo $price; ?>"><br>
                         <label for="price" style="font-family: Arial;font-size: 18px;">New price:</label>
                     </div>
                     <div class="form-floating">
